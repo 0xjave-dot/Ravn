@@ -3,6 +3,7 @@ import { HeroSection } from './HeroSection';
 import { MarqueeSection } from './MarqueeSection';
 import { AboutSection } from './AboutSection';
 import { ServicesSection } from './ServicesSection';
+import { LocationTracker } from './LocationTracker';
 import { ProjectsSection, Project } from './ProjectsSection';
 import { ContactModal } from './ContactModal';
 import { ProjectDetailModal } from './ProjectDetailModal';
@@ -37,6 +38,9 @@ export default function App() {
 
       {/* 4. SERVICES SECTION */}
       <ServicesSection />
+
+      {/* 4.5 LOCATION TRACKER SECTION */}
+      <LocationTracker />
 
       {/* 5. PROJECTS SECTION */}
       <ProjectsSection onProjectClick={handleProjectClick} />

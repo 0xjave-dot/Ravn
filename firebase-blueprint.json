@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "VisitorNode": {
+      "title": "VisitorNode",
+      "description": "Details of an individual visitor node tracked during their portfolio session.",
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "description": "UTC timestamp of the visit event."
+        },
+        "ip": {
+          "type": "string",
+          "description": "Redacted/masked or full IP address of the node."
+        },
+        "city": {
+          "type": "string",
+          "description": "Estimated city from routing metadata."
+        },
+        "region": {
+          "type": "string",
+          "description": "Estimated region or state."
+        },
+        "country": {
+          "type": "string",
+          "description": "Country name."
+        },
+        "gpsLat": {
+          "type": "number",
+          "description": "User authorized precision latitude."
+        },
+        "gpsLng": {
+          "type": "number",
+          "description": "User authorized precision longitude."
+        },
+        "accuracy": {
+          "type": "number",
+          "description": "Precision margin of error in meters."
+        },
+        "userAgent": {
+          "type": "string",
+          "description": "Client browser user agent."
+        },
+        "org": {
+          "type": "string",
+          "description": "ISP or Autonomous System Name."
+        }
+      },
+      "required": ["timestamp", "ip", "city", "country"]
+    }
+  },
+  "firestore": {
+    "/visitorLogs/{logId}": {
+      "schema": "VisitorNode",
+      "description": "A collection capturing active visitor logs for the geo-tracking dashboard."
+    }
+  }
+}

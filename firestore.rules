@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidVisitorNode(data) {
+      return data.keys().hasAll(['timestamp', 'ip', 'city', 'country'])
+        && data.keys().size() <= 10
+        && data.timestamp is string && data.timestamp.size() <= 50
+        && data.ip is string && data.ip.size() <= 64
+        && data.city is string && data.city.size() <= 100
+        && data.country is string && data.country.size() <= 100
+        && (!data.keys().contains('region') || (data.region is string && data.region.size() <= 100))
+        && (!data.keys().contains('gpsLat') || (data.gpsLat is number))
+        && (!data.keys().contains('gpsLng') || (data.gpsLng is number))
+        && (!data.keys().contains('accuracy') || (data.accuracy is number))
+        && (!data.keys().contains('userAgent') || (data.userAgent is string && data.userAgent.size() <= 500))
+        && (!data.keys().contains('org') || (data.org is string && data.org.size() <= 200));
+    }
+
+    match /visitorLogs/{logId} {
+      allow get, list: if true;
+      allow create: if isValidId(logId) && isValidVisitorNode(request.resource.data);
+      allow update, delete: if false; // Logs are completely immutable! No editing or deleting!
+    }
+  }
+}
