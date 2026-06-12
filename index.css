@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Kanit", sans-serif;
+}
+
+/* Global Reset & Base classes */
+html, body, #root {
+  background-color: #0C0C0C;
+  color: #D7E2EA;
+  font-family: 'Kanit', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.masked-text-overlay {
+  -webkit-mask-image: url("https://i.ibb.co/Y7fZdrwJ/Zj-Oh-J-removebg-preview.png");
+  mask-image: url("https://i.ibb.co/Y7fZdrwJ/Zj-Oh-J-removebg-preview.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 280px;
+  mask-size: 280px;
+  -webkit-mask-position: center bottom;
+  mask-position: center bottom;
+}
+
+@media (max-width: 639px) {
+  .masked-text-overlay {
+    -webkit-mask-size: 280px;
+    mask-size: 280px;
+    -webkit-mask-position: center center;
+    mask-position: center center;
+  }
+}
+
+@media (min-width: 640px) {
+  .masked-text-overlay {
+    -webkit-mask-size: 360px;
+    mask-size: 360px;
+  }
+}
+
+@media (min-width: 768px) {
+  .masked-text-overlay {
+    -webkit-mask-size: 440px;
+    mask-size: 440px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masked-text-overlay {
+    -webkit-mask-size: 520px;
+    mask-size: 520px;
+  }
+}
+
+
